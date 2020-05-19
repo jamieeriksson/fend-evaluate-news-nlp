@@ -7,7 +7,7 @@ const app = express();
 app.use(express.static("build"));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve("src/client/views/index.html"));
+  res.sendFile(path.resolve("build/index.html"));
 });
 
 const port = process.env.port || 8000;
