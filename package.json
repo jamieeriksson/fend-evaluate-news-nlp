@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "node src/server/server.js",
+    "dev": "nodemon src/server/server.js"
   },
   "jest": {
     "collectCoverage": true
@@ -19,6 +21,7 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
-    "jest": "^26.0.1"
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4"
   }
 }
