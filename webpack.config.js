@@ -5,8 +5,8 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: "./src/client/main.js",
   output: {
+    path: path.resolve(__dirname, "build/"),
     filename: "bundle.js",
-    path: path.resolve(__dirname, "/build"),
   },
   module: {
     rules: [
@@ -16,11 +16,11 @@ module.exports = {
         loader: "babel-loader",
       },
     ],
-    plugins: [
-      new HtmlWebPackPlugin({
-        template: "./src/client/views/index.html",
-        filename: "./index.html",
-      }),
-    ],
   },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/client/views/index.html",
+      filename: "./index.html",
+    }),
+  ],
 };
