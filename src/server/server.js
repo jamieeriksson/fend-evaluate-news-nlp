@@ -1,5 +1,12 @@
 const path = require("path");
 const express = require("express");
+const dotenv = require("dotenv");
+dotenv.config();
+const AYLIENTextAPI = require("aylien_textapi");
+const textapi = new AYLIENTextAPI({
+  application_id: process.env.API_ID,
+  application_key: process.env.API_KEY,
+});
 
 const app = express();
 
