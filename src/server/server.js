@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require("express");
+const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 const AYLIENTextAPI = require("aylien_textapi");
@@ -12,6 +13,7 @@ const app = express();
 
 // Set a static folder for webpack bundled files
 app.use(express.static("build"));
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
