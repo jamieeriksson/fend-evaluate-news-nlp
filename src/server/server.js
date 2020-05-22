@@ -34,15 +34,34 @@ app.get("/all", (request, response) => {
 
 // Extract article body
 app.post("/article", (request, response) => {
-  const url = request.body;
-  console.log(url);
-  const extraction = textapi.extract(url, function (error, response) {
+  // Extract article body
+  const article = request.body;
+
+  textapi.extract(article, function (error, response, rateLimits) {
     if (error === null) {
-      console.log(response);
+      // console.log(response);
+      console.log(rateLimits);
+      let articleAnalysis = { url: article.url, title: response.title };
+
+      // Sentiment analysis
+      textapi.sentiment(
+        {
+          text: response.article,
+          mode: "document",
+        },
+        function (error, response) {
+          if (error === null) {
+            articleAnalysis.polarity = response.polarity;
+            articleAnalysis.subjectivity = response.subjectivity;
+            articleAnalysis.polarity_confidence = response.polarity_confidence;
+            articleAnalysis.subjectivity_confidence =
+              response.subjectivity_confidence;
+            console.log(articleAnalysis);
+          }
+        }
+      );
     }
   });
-  console.log(extraction);
-  response.send(extraction);
 });
 
 // POST route to store desired Aylien API information in object
