@@ -15,8 +15,8 @@ async function getArticleExtraction() {
     },
     body: JSON.stringify(article),
   });
-  // const data = await response.json();
-  // console.log(data);
+  const data = await response.json();
+  console.log(data);
 }
 
 // function callApi () {

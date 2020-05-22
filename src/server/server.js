@@ -57,7 +57,7 @@ app.post("/article", (request, response) => {
             articleAnalysis.subjectivity_confidence =
               response.subjectivity_confidence;
 
-            console.log(articleAnalysis);
+            articleInfo.push(articleAnalysis);
           } else {
             console.log(`Error retreiving sentiment analysis: ${error}`);
           }
@@ -67,6 +67,8 @@ app.post("/article", (request, response) => {
       console.log(`Error retreiving article extraction: ${error}`);
     }
   });
+
+  response.send(articleInfo);
 });
 
 // POST route to store desired Aylien API information in object
