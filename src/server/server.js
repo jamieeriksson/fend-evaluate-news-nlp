@@ -25,7 +25,7 @@ const port = process.env.port || 8000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
 // Aylien API routes
-let articleInfo = {}; // Empty object to hold nlp extracted information from Aylien
+let articleInfo = []; // Empty object to hold nlp extracted information from Aylien
 
 // GET route to send stored article information to client side
 app.get("/all", (request, response) => {
@@ -56,10 +56,15 @@ app.post("/article", (request, response) => {
             articleAnalysis.polarity_confidence = response.polarity_confidence;
             articleAnalysis.subjectivity_confidence =
               response.subjectivity_confidence;
+
             console.log(articleAnalysis);
+          } else {
+            console.log(`Error retreiving sentiment analysis: ${error}`);
           }
         }
       );
+    } else {
+      console.log(`Error retreiving article extraction: ${error}`);
     }
   });
 });
