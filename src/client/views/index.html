@@ -6,15 +6,25 @@
   </head>
 
   <body>
-    <!-- <script>
-      // Keep at bottom of code
-      // Check that service workers are supported
-      if ("serviceWorker" in navigator) {
-        // Use the window load event to keep the page load performant
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/service-worker.js");
-        });
-      }
-    </script> -->
+    <div id="root-container">
+      <h1>NLP Article Analysis</h1>
+      <form id="articleForm">
+        <label for="urlField">Enter Article URL: </label>
+        <input
+          id="urlField"
+          type="text"
+          placeholder="www.example.com/article"
+        />
+        <button id="urlSubmit" type="submit">Analyze</button>
+      </form>
+      <h2>Results On Article:</h2>
+      <h3 id="article-title">Title</h3>
+      <div id="results-container">
+        <p id="polarity"><span>Polarity</span><br /></p>
+        <p id="polarity-conf"><span>Polarity Confidence</span><br /></p>
+        <p id="subjectivity"><span>Subjectivity</span><br /></p>
+        <p id="subjectivity-conf"><span>Subjectivity Confidence</span><br /></p>
+      </div>
+    </div>
   </body>
 </html>
