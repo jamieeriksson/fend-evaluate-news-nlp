@@ -4,13 +4,11 @@ import "./styles/styles.scss";
 function changeUI(data) {
   console.log(data);
   const { url, title } = data.article;
-  let text = document.createTextNode(title);
   let elmt = document.getElementById("article-title");
-  elmt.appendChild(text);
+  elmt.textContent = title;
   Object.keys(data.sentiment).forEach((key) => {
-    text = document.createTextNode(data.sentiment[key]);
     elmt = document.getElementById(`${key}`);
-    elmt.appendChild(text);
+    elmt.textContent = data.sentiment[key];
   });
 }
 
