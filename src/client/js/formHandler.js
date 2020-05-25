@@ -1,10 +1,10 @@
-async function getArticleAnalysis() {
-  const response = await fetch("http://localhost:8000/all");
-  const data = await response.json();
-  console.log(data);
-}
+// async function getArticleInfo() {
+//   const response = await fetch("http://localhost:8000/all");
+//   const data = await response.json();
+//   console.log(data);
+// }
 
-async function getArticleExtraction() {
+async function getArticleAnalysis() {
   const url =
     "https://ultiworld.com/2020/05/21/callahan-2020-what-weve-learned-from-the-womens-division-race/";
   const article = { url };
@@ -15,8 +15,13 @@ async function getArticleExtraction() {
     },
     body: JSON.stringify(article),
   });
-  const data = await response.json();
-  console.log(data);
+  try {
+    console.log(response);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error with API request:", error);
+  }
 }
 
 // function callApi () {
@@ -24,4 +29,4 @@ async function getArticleExtraction() {
 // }
 
 export { getArticleAnalysis };
-export { getArticleExtraction };
+// export { getArticleInfo };
