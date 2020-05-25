@@ -2,25 +2,26 @@ import { getArticleAnalysis } from "./js/formHandler";
 import "./styles/styles.scss";
 
 function changeUI(data) {
+  console.log(data);
+  const { url, title } = data.article;
   const {
-    url,
-    title,
     polarity,
     subjectivity,
     polarityConfidence,
     subjectivityConfidence,
-  } = data;
+  } = data.sentiment;
+
   document.getElementById("polarity");
 }
 
-getArticleAnalysis()
-  .then((data) => {
-    console.log(data);
-    changeUI(data);
-  })
-  .catch((error) => {
+async function analyze(event) {
+  event.preventDefault();
+  const response = await getArticleAnalysis();
+  try {
+    changeUI(response);
+  } catch (error) {
     console.log("Error analyzing article:", error);
-  });
+  }
+}
 
-// getArticleAnalysis();
-// getArticleExtraction();
+document.getElementById("articleForm").addEventListener("submit", analyze);
