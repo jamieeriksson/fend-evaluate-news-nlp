@@ -1,5 +1,4 @@
-async function getArticleAnalysis() {
-  const url = document.getElementById("urlField").value;
+async function getArticleAnalysis(url) {
   const response = await fetch("http://localhost:8000/article", {
     method: "POST",
     headers: {
