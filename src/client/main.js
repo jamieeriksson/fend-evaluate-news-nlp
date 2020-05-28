@@ -1,4 +1,4 @@
-import { getArticleAnalysis } from "./js/formHandler";
+import { getArticleAnalysis } from "./js/getArticleAnalysis";
 import { incorrectURL } from "./js/incorrectURL";
 import { resetUI } from "./js/UIchanges";
 import { changeUI } from "./js/UIchanges";
