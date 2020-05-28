@@ -46,13 +46,13 @@ function extractArticle(document) {
         };
         resolve(articleExtract);
       } else {
-        reject(`Error retreiving article extraction: ${error}`);
+        reject(error);
       }
     });
   });
 }
 
-function analyzeArticle(body) {
+async function analyzeArticle(body) {
   return new Promise((resolve, reject) => {
     textapi.sentiment(
       {
@@ -69,7 +69,7 @@ function analyzeArticle(body) {
           };
           resolve(sentiment);
         } else {
-          reject(`Error retreiving sentiment analysis: ${error}`);
+          reject(error);
         }
       }
     );
@@ -85,14 +85,21 @@ app.get("/all", (request, response) => {
 app.post("/article", async (request, response) => {
   // Extract article body
   const article = request.body;
-  const extraction = await extractArticle(article);
-  const articleAnalysis = await analyzeArticle(extraction.body);
-  articleInfo = {
-    article: { url: extraction.url, title: extraction.title },
-    sentiment: articleAnalysis,
-  };
-  console.log(articleInfo);
-  response.send(articleInfo);
+  try {
+    const extraction = await extractArticle(article);
+    console.log("extraction success!");
+    const articleAnalysis = await analyzeArticle(extraction.body);
+    console.log("sentiment success!");
+    articleInfo = {
+      article: { url: extraction.url, title: extraction.title },
+      sentiment: articleAnalysis,
+    };
+    console.log(articleInfo);
+    response.send(articleInfo);
+  } catch (error) {
+    console.log(`There was an error: ${error}`);
+    response.status(400).send("Bad Request");
+  }
 });
 
 // POST route to store desired Aylien API information in object

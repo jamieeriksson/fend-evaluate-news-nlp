@@ -20,18 +20,25 @@ async function analyze(event) {
 
   const errorMsg = document.getElementById("error-msg");
   const inputBox = document.getElementById("urlField");
+  let msg = "";
 
   if (urlCheck.test(articleUrl)) {
     errorMsg.style.display = "none";
     inputBox.classList.remove("error-url");
-    const response = await getArticleAnalysis(articleUrl);
     try {
+      const response = await getArticleAnalysis(articleUrl);
+      console.log(response);
       changeUI(response);
     } catch (error) {
       console.log("Error analyzing article:", error);
+      msg = "Could not analyze article. Double check the URL and try again.";
+      errorMsg.textContent = msg;
+      inputBox.classList.add("error-url");
+      errorMsg.style.display = "block";
+      inputBox.style.display = "inline";
     }
   } else {
-    const msg =
+    msg =
       "Article URL must contain http:// or https:// at beginning of address.";
     errorMsg.textContent = msg;
     inputBox.classList.add("error-url");
