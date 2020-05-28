@@ -1,10 +1,11 @@
 function incorrectURL(msg) {
-  console.log(msg);
   const errorMsg = document.getElementById("error-msg");
-  errorMsg.textContent = msg;
-  errorMsg.style.display = "block";
   const inputBox = document.getElementById("urlField");
+
+  errorMsg.textContent = msg;
   inputBox.classList.add("error-url");
+  errorMsg.style.display = "block";
+  inputBox.style.display = "inline";
 }
 
 export { incorrectURL };
