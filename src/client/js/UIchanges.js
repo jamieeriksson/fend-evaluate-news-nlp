@@ -21,4 +21,17 @@ function resetUI() {
   });
 }
 
+function changeUI(data) {
+  console.log(data);
+  const { url, title } = data.article;
+  let elmt = document.getElementById("article-title");
+  elmt.textContent = title;
+  Object.keys(data.sentiment).forEach((key) => {
+    elmt = document.getElementById(`${key}`);
+    elmt.textContent = data.sentiment[key];
+  });
+}
+
+export { changeUI };
+
 export { resetUI };

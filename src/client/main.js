@@ -1,6 +1,7 @@
 import { getArticleAnalysis } from "./js/formHandler";
 import { incorrectURL } from "./js/incorrectURL";
-import { resetUI } from "./js/resetUI";
+import { resetUI } from "./js/UIchanges";
+import { changeUI } from "./js/UIchanges";
 import "./styles/styles.scss";
 
 function changeUI(data) {
