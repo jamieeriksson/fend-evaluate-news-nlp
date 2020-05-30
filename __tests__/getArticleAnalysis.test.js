@@ -1,4 +1,3 @@
-import regeneratorRuntime from "regenerator-runtime";
 import { getArticleAnalysis } from "../src/client/js/getArticleAnalysis";
 import { checkURL } from "../src/client/js/incorrectURL";
 
@@ -21,27 +20,31 @@ beforeEach(() => {
   fetch.mockClear();
 });
 
-test("it should return an object with Aylien API article analysis results", async () => {
-  const article = "http://fakeurl.com";
-  const response = await getArticleAnalysis(article);
-  const output = {
-    article: { url: "http://fakeurl.com", title: "Fake Article" },
-    sentiment: {
-      polarity: "positive",
-      polarityConfidence: 0.89,
-      subjectivity: "unknown",
-      subjectivityConfidence: 0,
-    },
-  };
+describe("Test getArticleAnalysis function and API call", () => {
+  test("it should return an object with Aylien API article analysis results", async () => {
+    const article = "http://fakeurl.com";
+    const response = await getArticleAnalysis(article);
+    const output = {
+      article: { url: "http://fakeurl.com", title: "Fake Article" },
+      sentiment: {
+        polarity: "positive",
+        polarityConfidence: 0.89,
+        subjectivity: "unknown",
+        subjectivityConfidence: 0,
+      },
+    };
 
-  expect(response).toEqual(output);
-  expect(fetch).toHaveBeenCalledTimes(1);
-});
+    expect(response).toEqual(output);
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
 
-test("it should handle exception with thrown error", async () => {
-  fetch.mockImplementationOnce(() => Promise.reject("API failure"));
+  test("it should handle exception with thrown error", async () => {
+    fetch.mockImplementationOnce(() => Promise.reject("API failure"));
 
-  await expect(getArticleAnalysis("http://invalid url.com")).rejects.toThrow();
+    await expect(
+      getArticleAnalysis("http://invalid url.com")
+    ).rejects.toThrow();
+  });
 });
 
 describe("Test checkURL function", () => {
