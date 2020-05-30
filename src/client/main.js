@@ -4,6 +4,7 @@ import { checkURL } from "./js/incorrectURL";
 import { resetUI } from "./js/UIchanges";
 import { changeUI } from "./js/UIchanges";
 import "./styles/styles.scss";
+import "./styles/form.scss";
 
 async function analyze(event) {
   event.preventDefault();

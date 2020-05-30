@@ -1,0 +1,41 @@
+$primaryFont: "Oswald";
+
+#articleForm {
+  width: 80%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid:
+    "label input button"auto ". error ."auto / auto 1fr auto;
+
+  label {
+    grid-area: label;
+    margin-right: 10px;
+    margin-bottom: 8px;
+  }
+
+  input {
+    grid-area: input;
+    padding: 5px;
+    margin-right: 10px;
+    font: 14px $primaryFont;
+  }
+
+  button {
+    grid-area: button;
+    font: 16px $primaryFont;
+  }
+}
+
+.error-url {
+  display: none;
+  border: 1px solid #ff0000;
+}
+
+#error-msg {
+  display: none;
+  grid-area: error;
+  margin: 0 0 0 10px;
+  font-size: 12px;
+  color: #ff0000;
+}
