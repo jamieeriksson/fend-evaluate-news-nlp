@@ -10,9 +10,9 @@ async function analyze(event) {
 
   resetUI();
   const articleUrl = document.getElementById("urlField").value;
-  const message = "";
+  let message = "";
 
-  const valid = checkURL(articleURL);
+  const valid = checkURL(articleUrl);
 
   if (valid) {
     try {
