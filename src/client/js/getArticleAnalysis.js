@@ -10,7 +10,7 @@ async function getArticleAnalysis(url) {
     const data = await response.json();
     return data;
   } catch (error) {
-    throw Error("Invalid URL");
+    throw new Error("Invalid URL");
   }
 }
 
