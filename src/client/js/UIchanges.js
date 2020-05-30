@@ -1,3 +1,4 @@
+// Remove previous article submission results upon a new form submit
 function resetUI() {
   // Remove error settings from input field
   const errorMsg = document.getElementById("error-msg");
@@ -21,6 +22,7 @@ function resetUI() {
   });
 }
 
+// Add article analysis results to the html
 function changeUI(data) {
   console.log(data);
   const { url, title } = data.article;
@@ -33,5 +35,4 @@ function changeUI(data) {
 }
 
 export { changeUI };
-
 export { resetUI };

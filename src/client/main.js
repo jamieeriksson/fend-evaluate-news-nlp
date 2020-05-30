@@ -17,10 +17,8 @@ async function analyze(event) {
   if (valid) {
     try {
       const response = await getArticleAnalysis(articleUrl);
-      console.log(response);
       changeUI(response);
     } catch (error) {
-      console.log("Error analyzing article:", error);
       message =
         "Could not analyze article. Double check the URL and try again.";
       incorrectURL(message);

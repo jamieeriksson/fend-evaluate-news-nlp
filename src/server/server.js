@@ -31,14 +31,14 @@ app.get("/", (req, res) => {
 const port = process.env.port || 8000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
-// Functions
+/** Aylien API call functions.
+ * "extractArticle()" extracts the main body of the article submitted.
+ * "analyzeArticle()" returns a sentiment analysis of the article. **/
 function extractArticle(document) {
   return new Promise((resolve, reject) => {
     textapi.extract(document, function (error, response, rateLimits) {
       if (error === null) {
         let articleExtract = {};
-        console.log("second");
-        console.log(rateLimits);
         articleExtract = {
           url: document.url,
           title: response.title,
@@ -76,31 +76,18 @@ async function analyzeArticle(body) {
   });
 }
 
-// GET route to send stored article information to client side
-app.get("/all", (request, response) => {
-  response.send(articleInfo);
-});
-
-// Extract article body
+// POST route for calling Aylien API
 app.post("/article", async (request, response) => {
-  // Extract article body
   const article = request.body;
   try {
     const extraction = await extractArticle(article);
-    console.log("extraction success!");
     const articleAnalysis = await analyzeArticle(extraction.body);
-    console.log("sentiment success!");
     articleInfo = {
       article: { url: extraction.url, title: extraction.title },
       sentiment: articleAnalysis,
     };
-    console.log(articleInfo);
     response.send(articleInfo);
   } catch (error) {
-    console.log(`There was an error: ${error}`);
     response.status(400).send("Bad Request");
   }
 });
-
-// POST route to store desired Aylien API information in object
-app.post("");
