@@ -1,6 +1,6 @@
 import regeneratorRuntime from "regenerator-runtime";
 import { getArticleAnalysis } from "../src/client/js/getArticleAnalysis";
-import { analyze } from "../src/client/main";
+import { checkURL } from "../src/client/js/incorrectURL";
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
@@ -42,4 +42,27 @@ test("it should handle exception with thrown error", async () => {
   fetch.mockImplementationOnce(() => Promise.reject("API failure"));
 
   await expect(getArticleAnalysis("http://invalid url.com")).rejects.toThrow();
+});
+
+describe("Test checkURL function", () => {
+  test("It should respond true when given url with http://", () => {
+    const input = "http://nohttp.com";
+    const output = true;
+
+    expect(checkURL(input)).toEqual(output);
+  });
+
+  test("It should respond true when given url with https://", () => {
+    const input = "https://nohttp.com";
+    const output = true;
+
+    expect(checkURL(input)).toEqual(output);
+  });
+
+  test("It should respond with false when given url with no https?://", () => {
+    const input = "nohttp.com";
+    const output = false;
+
+    expect(checkURL(input)).toEqual(output);
+  });
 });

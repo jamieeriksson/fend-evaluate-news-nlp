@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1590799776644" clover="3.2.0">
-  <project timestamp="1590799776644" name="All files">
-    <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="6" coveredelements="6" complexity="0" loc="5" ncloc="5" packages="1" files="1" classes="1"/>
+<coverage generated="1590801235416" clover="3.2.0">
+  <project timestamp="1590801235417" name="All files">
+    <metrics statements="13" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2" elements="16" coveredelements="9" complexity="0" loc="13" ncloc="13" packages="1" files="2" classes="2"/>
     <file name="getArticleAnalysis.js" path="/home/jamie/projects/udacity/front-end/evaluate-news-scratch/src/client/js/getArticleAnalysis.js">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <line num="2" count="2" type="stmt"/>
@@ -9,6 +9,17 @@
       <line num="10" count="1" type="stmt"/>
       <line num="11" count="1" type="stmt"/>
       <line num="13" count="1" type="stmt"/>
+    </file>
+    <file name="incorrectURL.js" path="/home/jamie/projects/udacity/front-end/evaluate-news-scratch/src/client/js/incorrectURL.js">
+      <metrics statements="8" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <line num="2" count="3" type="stmt"/>
+      <line num="3" count="3" type="stmt"/>
+      <line num="7" count="0" type="stmt"/>
+      <line num="8" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="11" count="0" type="stmt"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
     </file>
   </project>
 </coverage>

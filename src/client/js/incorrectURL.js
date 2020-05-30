@@ -1,3 +1,8 @@
+function checkURL(url) {
+  const urlCheck = /^https?:\/\/.+/i;
+  return urlCheck.test(url);
+}
+
 function incorrectURL(msg) {
   const errorMsg = document.getElementById("error-msg");
   const inputBox = document.getElementById("urlField");
@@ -9,3 +14,4 @@ function incorrectURL(msg) {
 }
 
 export { incorrectURL };
+export { checkURL };

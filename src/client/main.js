@@ -1,5 +1,6 @@
 import { getArticleAnalysis } from "./js/getArticleAnalysis";
 import { incorrectURL } from "./js/incorrectURL";
+import { checkURL } from "./js/incorrectURL";
 import { resetUI } from "./js/UIchanges";
 import { changeUI } from "./js/UIchanges";
 import "./styles/styles.scss";
@@ -8,12 +9,12 @@ async function analyze(event) {
   event.preventDefault();
 
   resetUI();
-
   const articleUrl = document.getElementById("urlField").value;
-  const urlCheck = /^https?:\/\/.+/i;
-  let message = "";
+  const message = "";
 
-  if (urlCheck.test(articleUrl)) {
+  const valid = checkURL(articleURL);
+
+  if (valid) {
     try {
       const response = await getArticleAnalysis(articleUrl);
       console.log(response);
